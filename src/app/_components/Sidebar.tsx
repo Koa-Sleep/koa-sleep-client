@@ -17,7 +17,6 @@ import {
   IconButton,
   useMediaQuery,
   Skeleton,
-  CircularProgress,
   Menu as MuiMenu,
   MenuItem as MuiMenuItem,
   ListItemIcon,
@@ -234,8 +233,7 @@ const SidebarComponent: React.FC = () => {
                 onClick={handleClick}
               >
                 <Avatar sx={{ bgcolor: "primary.main" }}>
-                  {user?.first_name?.[0] ?? ""}
-                  {user?.last_name?.[0] ?? ""}
+                  {user?.fullName?.[0] ?? "N/A"}
                 </Avatar>
                 <Box
                   sx={{
@@ -249,7 +247,7 @@ const SidebarComponent: React.FC = () => {
                   }}
                 >
                   <Typography sx={{ fontWeight: 600 }}>
-                    {user?.full_name}
+                    {user?.fullName ?? "N/A"}
                   </Typography>
                 </Box>
               </Box>
@@ -274,7 +272,10 @@ const SidebarComponent: React.FC = () => {
                   },
                 }}
               >
-                <MuiMenuItem component="a" href="/api/demo/logout">
+                <MuiMenuItem
+                  component="a"
+                  href="http://localhost:8080/api/v1/demo/logout"
+                >
                   <ListItemIcon>
                     <Logout fontSize="small" />
                   </ListItemIcon>

@@ -15,7 +15,7 @@ const HistoryPage = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-  const rows = useMemo(() => mapSleepLogsToGridRows(sleepLogs), [sleepLogs]);
+  const rows = useMemo(() => getHistoryTableColumns(), []);
   const columns = useMemo(() => getHistoryTableColumns(), []);
 
   return (

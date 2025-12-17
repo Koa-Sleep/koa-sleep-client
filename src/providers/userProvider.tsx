@@ -1,6 +1,5 @@
 "use client";
 
-import { UserDTO } from "@/types/api/user";
 import {
   createContext,
   ReactNode,
@@ -11,10 +10,11 @@ import {
   useState,
 } from "react";
 import { useFetchCurrentUser } from "@/hooks/useAuth";
+import { UserResponse } from "@/client";
 
 type UserContextType = {
-  user: UserDTO | null;
-  setUser: (user: UserDTO) => void;
+  user: UserResponse | null;
+  setUser: (user: UserResponse) => void;
   clearUser: () => void;
   isLoading: boolean;
 };
@@ -29,7 +29,7 @@ const UserContext = createContext<UserContextType>({
 export const useUser = () => useContext(UserContext);
 
 export default function UserProvider({ children }: { children: ReactNode }) {
-  const [currentUser, setUserState] = useState<UserDTO | null>(null);
+  const [currentUser, setUserState] = useState<UserResponse | null>(null);
   const { data, isLoading, isError } = useFetchCurrentUser();
 
   useEffect(() => {
@@ -44,7 +44,7 @@ export default function UserProvider({ children }: { children: ReactNode }) {
     }
   }, [isError]);
 
-  const setUser = useCallback((user: UserDTO) => {
+  const setUser = useCallback((user: UserResponse) => {
     setUserState(user);
   }, []);
 

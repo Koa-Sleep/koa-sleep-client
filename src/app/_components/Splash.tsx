@@ -4,8 +4,21 @@ import { Box, Stack, Typography, Button, Container } from "@mui/material";
 import Image from "next/image";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { motion } from "framer-motion";
+import { UserControllerService } from "@/client/services/UserControllerService";
 
 const Splash = () => {
+  const handleTest = async () => {
+    try {
+      console.log("Initiating request...");
+
+      const response = await UserControllerService.getCurrentUser();
+
+      console.log("Success:", response);
+    } catch (err) {
+      console.error("Failed:", err);
+    }
+  };
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -124,12 +137,15 @@ const Splash = () => {
                     </Button>
                   </Box>
                   <Button
-                    href="/api/demo/login"
+                    href="http://localhost:8080/api/v1/demo/login"
                     variant="outlined"
                     size="large"
                     endIcon={<ArrowForwardIcon />}
                   >
                     See a Demo
+                  </Button>
+                  <Button variant="outlined" onClick={handleTest}>
+                    Test
                   </Button>
                 </Stack>
               </motion.div>

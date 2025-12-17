@@ -1,13 +1,12 @@
-// Custom hook which solely exists to talk to the API
-// server for authentication purposes.
-
-import { fetchAPI } from "@/services/apiClient";
-import { UserDTO } from "@/types/api/user";
+import { UserControllerService, UserResponse } from "@/client";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
-export const fetchCurrentUser = async (): Promise<UserDTO> => {
-  const endpoint = `/user/me`;
-  return await fetchAPI<UserDTO>(endpoint);
+export const fetchCurrentUser = async (): Promise<UserResponse> => {
+  const res = await UserControllerService.getCurrentUser();
+  if (!res.data) {
+    throw new Error("No user data received");
+  }
+  return res.data;
 };
 
 export const useFetchCurrentUser = () => {

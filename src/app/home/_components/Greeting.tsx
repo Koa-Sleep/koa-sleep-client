@@ -53,7 +53,7 @@ const Greeting = () => {
               fontWeight: 700,
             }}
           >
-            {user?.first_name}
+            {user?.fullName ?? "N/A"}
           </Typography>
           <WavingHandIcon sx={{ fontSize: 30, color: "info.main" }} />
         </Stack>

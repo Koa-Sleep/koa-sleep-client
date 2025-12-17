@@ -9,10 +9,10 @@ import WellnessIndicators from "./wellness-indicators/WellnessIndicators";
 import { Stack, CircularProgress, Box, Container } from "@mui/material";
 import { useEffect, useMemo, useState } from "react";
 import { useMostRecentSleepLog } from "@/hooks/useSleepLogs";
-import { UserDTO } from "@/types/api/user";
+import { UserResponse } from "@/client";
 
 interface DashboardContentProps {
-  user: UserDTO;
+  user: UserResponse;
 }
 
 const DashboardContent = ({ user }: DashboardContentProps) => {

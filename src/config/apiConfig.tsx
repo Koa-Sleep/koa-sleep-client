@@ -5,7 +5,7 @@ import { OpenAPI } from "@/client/core/OpenAPI";
 
 export default function ApiInitializer() {
   useEffect(() => {
-    OpenAPI.BASE = process.env.NEXT_PUBLIC_API_URL!;
+    OpenAPI.BASE = process.env.NEXT_PUBLIC_API_BASE!;
     OpenAPI.WITH_CREDENTIALS = true;
   }, []);
 
